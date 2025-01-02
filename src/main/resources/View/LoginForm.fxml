@@ -20,8 +20,8 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtUserName" layoutX="126.0" layoutY="371.0" />
-      <TextField fx:id="txtPassword" layoutX="126.0" layoutY="416.0" />
-      <Button layoutX="171.0" layoutY="481.0" mnemonicParsing="false" onAction="#btnLoginOnAction" style="-fx-background-color: #777772;" text="Login" />
+      <TextField fx:id="txtUserName" layoutX="126.0" layoutY="371.0" promptText="User name" />
+      <TextField fx:id="txtPassword" layoutX="126.0" layoutY="416.0" promptText="Password" />
+      <Button layoutX="171.0" layoutY="481.0" mnemonicParsing="false" onAction="#btnLoginOnAction" style="-fx-background-color: #FFFFFF;" text="Login" textFill="#154c79" />
    </children>
 </AnchorPane>
