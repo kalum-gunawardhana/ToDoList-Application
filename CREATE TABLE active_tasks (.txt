@@ -1,0 +1,27 @@
+CREATE TABLE active_tasks (
+    task_id INT AUTO_INCREMENT PRIMARY KEY,
+    task_title VARCHAR(100) NOT NULL,
+    task_description TEXT,
+    created_date DATE NOT NULL
+);
+
+CREATE TABLE completed_tasks (
+    task_id INT AUTO_INCREMENT PRIMARY KEY,
+    task_title VARCHAR(100) NOT NULL,
+    task_description TEXT,
+    completion_date DATE NOT NULL
+);
+
+INSERT INTO active_tasks (task_id,task_title, task_description, created_date) 
+VALUES 
+('1','Create Project Plan', 'Develop a detailed plan for the upcoming project.', '2025-01-01'),
+('2','Fix Bug in Login Module', 'Resolve the issue causing login failures.', '2025-01-02'),
+('3','Prepare Presentation', 'Design slides for the client meeting.', '2025-01-02'),
+('4','Code Review', 'Review code submitted by team members.', '2025-01-01');
+
+INSERT INTO completed_tasks (task_id,task_title, task_description, completion_date) 
+VALUES 
+('1','Finalize Budget', 'Complete the budget allocation for the project.', '2024-12-30'),
+('2','Deploy Website', 'Launch the website on the production server.', '2024-12-31'),
+('3','Conduct Team Meeting', 'Discuss the project timeline with the team.', '2024-12-29'),
+('4','Update Documentation', 'Revise and finalize project documentation.', '2024-12-28');

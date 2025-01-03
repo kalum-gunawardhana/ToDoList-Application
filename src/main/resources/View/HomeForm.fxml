@@ -4,16 +4,17 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HomeFormController">
+<AnchorPane prefHeight="500.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HomeFormController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#154c79" height="500.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="125.0" />
-      <Button layoutX="29.0" layoutY="105.0" minWidth="44.0" mnemonicParsing="false" onAction="#btnAddTaskOnAction" prefHeight="41.0" prefWidth="66.0" style="-fx-background-color: #154c79;" textAlignment="CENTER" textFill="#154c79">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#154c79" height="500.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="100.0" />
+      <Button layoutX="17.0" layoutY="105.0" minWidth="44.0" mnemonicParsing="false" onAction="#btnAddTaskOnAction" prefHeight="41.0" prefWidth="66.0" style="-fx-background-color: #154c79;" textAlignment="CENTER" textFill="#154c79">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -22,7 +23,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="29.0" layoutY="180.0" minWidth="44.0" mnemonicParsing="false" onAction="#btnSearchTaskOnAction" prefHeight="41.0" prefWidth="66.0" style="-fx-background-color: #154c79;" textAlignment="CENTER">
+      <Button layoutX="17.0" layoutY="180.0" minWidth="44.0" mnemonicParsing="false" onAction="#btnSearchTaskOnAction" prefHeight="41.0" prefWidth="66.0" style="-fx-background-color: #154c79;" textAlignment="CENTER">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -31,7 +32,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="29.0" layoutY="250.0" minWidth="44.0" mnemonicParsing="false" onAction="#updateTaskOnAction" prefHeight="41.0" prefWidth="66.0" style="-fx-background-color: #154c79;" textAlignment="CENTER">
+      <Button layoutX="17.0" layoutY="250.0" minWidth="44.0" mnemonicParsing="false" onAction="#updateTaskOnAction" prefHeight="41.0" prefWidth="66.0" style="-fx-background-color: #154c79;" textAlignment="CENTER">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -66,7 +67,7 @@
             <TableColumn fx:id="colDate2" prefWidth="79.199951171875" text="DATE" />
         </columns>
       </TableView>
-      <Button layoutX="29.0" layoutY="318.0" minWidth="44.0" mnemonicParsing="false" onAction="#deleteTaskOnAction" prefHeight="41.0" prefWidth="66.0" style="-fx-background-color: #154c79;" textAlignment="CENTER">
+      <Button layoutX="17.0" layoutY="318.0" minWidth="44.0" mnemonicParsing="false" onAction="#deleteTaskOnAction" prefHeight="41.0" prefWidth="66.0" style="-fx-background-color: #154c79;" textAlignment="CENTER">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -75,7 +76,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="29.0" layoutY="386.0" minWidth="44.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="66.0" style="-fx-background-color: #154c79;" textAlignment="CENTER">
+      <Button layoutX="17.0" layoutY="386.0" minWidth="44.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="66.0" style="-fx-background-color: #154c79;" textAlignment="CENTER">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -84,5 +85,10 @@
             </ImageView>
          </graphic>
       </Button>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#154c79" height="500.0" layoutX="700.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="250.0" />
+      <TextField fx:id="txtId" layoutX="754.0" layoutY="155.0" promptText="ID" />
+      <TextField fx:id="txtName" layoutX="754.0" layoutY="212.0" promptText="Title" />
+      <TextField fx:id="txtDescription" layoutX="754.0" layoutY="264.0" promptText="Description" />
+      <TextField fx:id="txtDate" layoutX="754.0" layoutY="317.0" promptText="Date (YYYY-MM-DD)" />
    </children>
 </AnchorPane>
