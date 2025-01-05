@@ -1,12 +1,12 @@
 package Controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 
 public class LoginFormController {
@@ -38,5 +38,18 @@ public class LoginFormController {
             // Show the alert and wait for user response
             alert.showAndWait();
         }
+    }
+
+    public void btnSignUpOnAction(ActionEvent actionEvent) {
+        System.out.println("clicked");
+
+        
+        Stage stage = new Stage();
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/View/SignUpForm.fxml"))));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.show();
     }
 }

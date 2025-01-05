@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -35,18 +36,27 @@ public class HomeFormController implements Initializable {
         System.out.println("clicked");
 
         try {
-            PreparedStatement preparedStatement = DBConnection.getInstance().getConnection().prepareStatement("INSERT INTO active_tasks (task_id, task_title, task_description, created_date) VALUES (?, ?, ?, ?)");
-            preparedStatement.setString(1,txtId.getText());
-            preparedStatement.setString(2,txtName.getText());
-            preparedStatement.setString(3,txtDescription.getText());
-            preparedStatement.setString(4,txtDate.getText());
+            PreparedStatement preparedStatement = DBConnection.getInstance().getConnection().prepareStatement("INSERT INTO active_tasks (task_title, task_description, created_date) VALUES (?, ?, ?)");
+            preparedStatement.setString(1,txtName.getText());
+            preparedStatement.setString(2,txtDescription.getText());
+            preparedStatement.setString(3,txtDate.getText());
 
             int update = preparedStatement.executeUpdate();
 
-            txtId.clear();
             txtName.clear();
             txtDescription.clear();
             txtDate.clear();
+
+            if(update>0){
+                // Create an Alert of type INFORMATION
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("System Alert");
+                alert.setHeaderText("Task Added Successfully");
+                alert.setContentText("Your Task Has Been Added..");
+
+                // Show the alert and wait for user response
+                alert.showAndWait();
+            }
 
             loadActiveTable();
         } catch (SQLException e) {
@@ -58,12 +68,11 @@ public class HomeFormController implements Initializable {
         System.out.println("clicked");
 
         try {
-            PreparedStatement preparedStatement = DBConnection.getInstance().getConnection().prepareStatement("SELECT * FROM active_tasks WHERE task_id = ?");
-            preparedStatement.setString(1,txtId.getText());
+            PreparedStatement preparedStatement = DBConnection.getInstance().getConnection().prepareStatement("SELECT * FROM active_tasks WHERE task_title = ?");
+            preparedStatement.setString(1,txtName.getText());
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()){
-                txtName.setText(resultSet.getString("task_title"));
                 txtDescription.setText(resultSet.getString("task_description"));
                 txtDate.setText(resultSet.getString("created_date"));
             }
@@ -105,12 +114,11 @@ public class HomeFormController implements Initializable {
                 String description = resultSet.getString("task_description");
                 String date = resultSet.getString("created_date");
 
-                Task task = new Task(id, title, description, date);
+                Task task = new Task(title, description, date);
                 observableTaskList1.add(task);
             }
             System.out.println(observableTaskList1.toString());
 
-            colId.setCellValueFactory(new PropertyValueFactory<>("id"));
             colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
             colDes.setCellValueFactory(new PropertyValueFactory<>("description"));
             colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
@@ -132,12 +140,11 @@ public class HomeFormController implements Initializable {
                 String description = resultSet.getString("task_description");
                 String date = resultSet.getString("completion_date");
 
-                Task task = new Task(id, title, description, date);
+                Task task = new Task(title, description, date);
                 observableTaskList2.add(task);
             }
             System.out.println(observableTaskList2.toString());
 
-            colID2.setCellValueFactory(new PropertyValueFactory<>("id"));
             colTitle2.setCellValueFactory(new PropertyValueFactory<>("title"));
             colDes2.setCellValueFactory(new PropertyValueFactory<>("description"));
             colDate2.setCellValueFactory(new PropertyValueFactory<>("date"));
@@ -158,8 +165,8 @@ public class HomeFormController implements Initializable {
     public void removeActiveTask(Object t1){
         Task task =(Task) t1;
         try {
-            PreparedStatement preparedStatement = DBConnection.getInstance().getConnection().prepareStatement("DELETE FROM active_tasks WHERE task_id = ?");
-            preparedStatement.setString(1, task.getId());
+            PreparedStatement preparedStatement = DBConnection.getInstance().getConnection().prepareStatement("DELETE FROM active_tasks WHERE task_title = ?");
+            preparedStatement.setString(1, task.getTitle());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -168,18 +175,17 @@ public class HomeFormController implements Initializable {
 
     public void addCompletedTask(Object t1){
         Task task = null;
-                
+
         if (t1 !=null){
             task =(Task) t1;
         }
-        
+
         PreparedStatement preparedStatement;
         try {
-            preparedStatement = DBConnection.getInstance().getConnection().prepareStatement("INSERT INTO completed_tasks (task_id, task_title, task_description, completion_date) VALUES (?, ?, ?, ?)");
-            preparedStatement.setString(1,task.getId());
-            preparedStatement.setString(2,task.getTitle());
-            preparedStatement.setString(3,task.getDescription());
-            preparedStatement.setString(4, task.getDate());
+            preparedStatement = DBConnection.getInstance().getConnection().prepareStatement("INSERT INTO completed_tasks (task_title, task_description, completion_date) VALUES (?, ?, ?)");
+            preparedStatement.setString(1,task.getTitle());
+            preparedStatement.setString(2,task.getDescription());
+            preparedStatement.setString(3, task.getDate());
 
             int update = preparedStatement.executeUpdate();
         } catch (SQLException e) {
